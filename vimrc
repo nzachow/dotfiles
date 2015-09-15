@@ -3,6 +3,13 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 set relativenumber
 
+syntax on
+filetype indent plugin on
+set background=dark
+set foldmethod=indent
+set foldlevel=99
+
+
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 

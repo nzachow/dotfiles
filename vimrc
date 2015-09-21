@@ -9,6 +9,10 @@ set background=dark
 set foldmethod=indent
 set foldlevel=99
 
+:set history=1000
+
+map <F9> :set paste<CR>
+map <F10> :set nopaste<CR>
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8

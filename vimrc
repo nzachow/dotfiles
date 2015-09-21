@@ -11,6 +11,10 @@ set foldlevel=99
 
 :set history=1000
 
+"Easymotion
+map <Leader>w <Plug>(easymotion-bd-wl)
+map <Leader>f <Plug>(easymotion-bd-fl)
+
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>
 

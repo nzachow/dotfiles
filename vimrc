@@ -11,6 +11,10 @@ set foldlevel=99
 
 :set history=1000
 
+"Do not exceed 80 characters per line
+highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
+match OverLength /\%81v.*/
+
 "Easymotion
 map <Leader>w <Plug>(easymotion-bd-wl)
 map <Leader>f <Plug>(easymotion-bd-fl)

@@ -11,6 +11,10 @@ set foldlevel=99
 
 :set history=1000
 
+"Smooth scrolling
+set lazyredraw
+set ttyfast
+
 "Do not exceed 80 characters per line
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%81v.*/

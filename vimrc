@@ -15,7 +15,7 @@ set foldlevel=99
 set lazyredraw
 set ttyfast
 
-"Do not exceed 80 characters per line
+""Do not exceed 80 characters per line
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%81v.*/
 

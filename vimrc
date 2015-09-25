@@ -15,6 +15,9 @@ set foldlevel=99
 set lazyredraw
 set ttyfast
 
+" Close buffer but not split ( <b>uffer <d>elete )
+nmap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
+
 ""Do not exceed 80 characters per line
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
 match OverLength /\%81v.*/

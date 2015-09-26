@@ -1,6 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " -> Starting from scratch
 """"""""""""""""""""""""""""""""""""""""""""""""""
+call pathogen#infect()
 set relativenumber
 
 syntax on
@@ -25,6 +26,15 @@ match OverLength /\%81v.*/
 "Easymotion
 map <Leader>w <Plug>(easymotion-bd-wl)
 map <Leader>f <Plug>(easymotion-bd-fl)
+
+"Navigation between windows
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"Color is good
+set t_Co=256
 
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>

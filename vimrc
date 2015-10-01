@@ -36,6 +36,7 @@ nnoremap <C-H> <C-W><C-H>
 "Color is good
 set t_Co=256
 
+"Paste and nopaste shortcuts
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>
 

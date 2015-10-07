@@ -1,6 +1,8 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " -> Starting from scratch
 """"""""""""""""""""""""""""""""""""""""""""""""""
+
+"Pathogen
 call pathogen#infect()
 set relativenumber
 

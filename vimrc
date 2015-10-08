@@ -2,7 +2,12 @@
 " -> Starting from scratch
 """"""""""""""""""""""""""""""""""""""""""""""""""
 call pathogen#infect()
+call pathogen#helptags()
 set relativenumber
+
+"Tab name
+let &titlestring = expand('%:p:h:t')
+set title
 
 syntax on
 filetype indent plugin on
@@ -10,7 +15,7 @@ set background=dark
 set foldmethod=indent
 set foldlevel=99
 
-:set history=1000
+set history=1000
 
 "Smooth scrolling
 set lazyredraw
@@ -20,8 +25,12 @@ set ttyfast
 nmap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 
 ""Do not exceed 80 characters per line
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#FFD9D9
-match OverLength /\%81v.*/
+
+highlight ExtraWhitespace ctermbg=grey guibg=grey
+call matchadd('ExtraWhitespace', '\s\+$', 11)
+
+highlight OverLength ctermbg=lightred guibg=lightgrey
+call matchadd('OverLength', '\%>80v.\+')
 
 "Easymotion
 map <Leader>w <Plug>(easymotion-bd-wl)

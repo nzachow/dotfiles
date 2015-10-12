@@ -1,8 +1,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " -> Starting from scratch
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
-"Pathogen
 call pathogen#infect()
 call pathogen#helptags()
 set relativenumber
@@ -18,6 +16,13 @@ set foldmethod=indent
 set foldlevel=99
 
 set history=1000
+
+"Auto complete for commands
+set wildmenu
+
+"You should be able to from a buffer without saving changes
+"Caution with :qa!
+set hidden
 
 "Smooth scrolling
 set lazyredraw
@@ -47,7 +52,6 @@ nnoremap <C-H> <C-W><C-H>
 "Color is good
 set t_Co=256
 
-"Paste and nopaste shortcuts
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>
 

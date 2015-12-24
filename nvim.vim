@@ -14,13 +14,16 @@ set title
 syntax on
 filetype indent plugin on
 set background=dark
-set foldmethod=indent
-set foldlevel=99
+
+colorscheme dracula
 
 set history=1000
 
 "Auto complete for commands
 set wildmenu
+
+"Keep 20 context lines on screen(scrolloff[set])
+set so=20
 
 "You should be able to switch from a buffer without saving changes
 "Caution with :qa!
@@ -31,7 +34,9 @@ map Y y$
 
 "Smooth scrolling
 set lazyredraw
-set ttyfast
+
+"Whitout this Taboo would not remember tabs names
+set sessionoptions+=tabpages,globals
 
 " Close buffer but not split ( <b>uffer <d>elete )
 nmap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
@@ -60,12 +65,20 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+"Navigation between tabs
+noremap <C-g>t gt
+noremap <C-g>T gT
 
-""Laziness is good
+"Navigation maps for terminal mode
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-g>t <C-\><C-n>gt
+tnoremap <C-g>T <C-\><C-n>gT
+
+"Laziness is a virtue
 cab svr scp://hidden@spiegelsaal:443//var/www/html/pytagger/
-
-"Color is good
-set t_Co=256
 
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>

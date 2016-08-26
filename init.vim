@@ -1,12 +1,30 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " -> Starting from scratch
 """"""""""""""""""""""""""""""""""""""""""""""""""
-call pathogen#infect()
-call pathogen#helptags()
 set relativenumber
 "Current line will display absolute number
 set number
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#rc('~/.config/nvim/bundle')
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'dracula/vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'artur-shaik/vim-javacomplete2'
+call vundle#end()            " required
+filetype plugin indent on    " required
 
+let g:airline_powerline_fonts = 1
+
+"Javaaaaaaaaa
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
 "Tab name
 let &titlestring = expand('%:p:h:t')
 set title
@@ -15,7 +33,7 @@ syntax on
 filetype indent plugin on
 set background=dark
 
-colorscheme dracula
+color dracula
 
 set history=1000
 
@@ -38,9 +56,6 @@ set lazyredraw
 "Whitout this Taboo would not remember tabs names
 set sessionoptions+=tabpages,globals
 
-" Close buffer but not split ( <b>uffer <d>elete )
-nmap <leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
-
 ""Do not exceed 100 characters per line
 highlight ExtraWhitespace ctermbg=grey guibg=grey
 call matchadd('ExtraWhitespace', '\s\+$', 11)
@@ -54,11 +69,6 @@ map <F2> :mksession! ~/vim_session <cr>
 
 "Reload session
 map <F3> :source ~/vim_session <cr>
-
-
-"Easymotion
-map <Leader>w <Plug>(easymotion-bd-wl)
-map <Leader>f <Plug>(easymotion-bd-fl)
 
 "Navigation between windows
 nnoremap <C-J> <C-W><C-J>
@@ -76,9 +86,6 @@ tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 tnoremap <C-g>t <C-\><C-n>gt
 tnoremap <C-g>T <C-\><C-n>gT
-
-"Laziness is a virtue
-cab svr scp://hidden@spiegelsaal:443//var/www/html/pytagger/
 
 map <F9> :set paste<CR>
 map <F10> :set nopaste<CR>

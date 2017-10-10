@@ -11,23 +11,56 @@ call vundle#rc('~/.config/nvim/bundle')
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'dracula/vim'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'vim-airline/vim-airline'
+Plugin 'SirVer/ultisnips'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
-Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'fatih/vim-go'
+Plugin 'nsf/gocode', {'rtp': 'nvim/'}
+Plugin 'zchee/deoplete-go'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'blindFS/vim-taskwarrior'
+Plugin 'tpope/vim-fugitive'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'takac/vim-hardtime'
+" Plugin 'vim-syntastic/syntastic'
+"Plugin 'artur-shaik/vim-javacomplete2'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-let g:airline_powerline_fonts = 1
 
+"Hardmode settings
+let g:hardtime_maxcount = 3
+let g:hardtime_showmsg = 1
+let g:hardtime_timeout = 1300
+let g:hardtime_default_on = 1
+
+" Autoformat file on save
+let blacklist = ['md']
+au BufWrite * if ! index(blacklist, &ft) < 0 | :Autoformat
+
+let g:airline_powerline_fonts = 1
+let g:deoplete#enable_at_startup = 1
+
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+"Close preview window
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "Javaaaaaaaaa
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
 "Tab name
 let &titlestring = expand('%:p:h:t')
 set title
+
+"Copy to system clipboard
+vnoremap <Leader>c "+y
+"Paste from system clipboard
+noremap <Leader>v "+p
 
 syntax on
 filetype indent plugin on
@@ -53,22 +86,32 @@ map Y y$
 "Smooth scrolling
 set lazyredraw
 
+"real tab for real bioinformaticians
+inoremap <S-Tab> <C-V><Tab>
+
+
 "Whitout this Taboo would not remember tabs names
 set sessionoptions+=tabpages,globals
 
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=grey
+highlight Search ctermfg=grey
 ""Do not exceed 100 characters per line
 highlight ExtraWhitespace ctermbg=grey guibg=grey
 call matchadd('ExtraWhitespace', '\s\+$', 11)
 
-highlight OverLength ctermbg=lightred guibg=lightgrey
-call matchadd('OverLength', '\%>100v.\+')
-
+" highlight OverLength ctermbg=lightred guibg=lightgrey
+" call matchadd('OverLength', '\%>100v.\+')
+" highlight Normal ctermbg=Blue
 
 "Save session
 map <F2> :mksession! ~/vim_session <cr>
 
 "Reload session
 map <F3> :source ~/vim_session <cr>
+
+" GoRun
+au FileType go nmap gr :GoRun <cr>
 
 "Navigation between windows
 nnoremap <C-J> <C-W><C-J>

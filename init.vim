@@ -9,7 +9,7 @@ filetype off                  " required
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#rc('~/.config/nvim/bundle')
 call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 Plugin 'dracula/vim'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -29,6 +29,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'takac/vim-hardtime'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 " Plugin 'vim-syntastic/syntastic'
 "Plugin 'artur-shaik/vim-javacomplete2'
 call vundle#end()            " required
@@ -61,6 +63,9 @@ set title
 vnoremap <Leader>c "+y
 "Paste from system clipboard
 noremap <Leader>v "+p
+
+"NERDTree
+map <Leader>t :NERDTreeToggle<CR>
 
 syntax on
 filetype indent plugin on

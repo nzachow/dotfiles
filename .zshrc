@@ -17,6 +17,13 @@ ZSH=/usr/share/oh-my-zsh/
 setxkbmap -layout br
 setxkbmap -option caps:escape
 
+xmodmap -e "clear Mod4"
+xmodmap -e "keycode 133 = ISO_Level3_Shift"
+xmodmap -e "keycode  45 = k K k K Up ampersand kra"
+xmodmap -e "keycode  44 = j J j J Down"
+xmodmap -e "keycode  43 = h H h H Left"
+xmodmap -e "keycode  46 = l L l L Right"
+
 export GOPATH=$HOME/Prog/go/
 export PATH=$PATH:$GOPATH/bin
 
@@ -28,4 +35,5 @@ export EDITOR='/usr/bin/nvim'
 alias ll="ls -hal"
 ZSH_THEME="agnoster"
 
+plugin=(git npm)
 source $ZSH/oh-my-zsh.sh

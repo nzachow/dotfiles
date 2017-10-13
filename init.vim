@@ -42,6 +42,7 @@ let g:hardtime_maxcount = 3
 let g:hardtime_showmsg = 1
 let g:hardtime_timeout = 1300
 let g:hardtime_default_on = 1
+let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
 
 " Autoformat file on save
 let blacklist = ['md']

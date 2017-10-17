@@ -45,8 +45,8 @@ let g:hardtime_default_on = 1
 let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
 
 " Autoformat file on save
-let blacklist = ['md']
-au BufWrite * if ! index(blacklist, &ft) < 0 | :Autoformat
+" let blacklist = ['md', 'go']
+" au BufWrite * if ! index(blacklist, &ft) < 0 | :Autoformat
 
 let g:airline_powerline_fonts = 1
 let g:deoplete#enable_at_startup = 1
@@ -67,6 +67,16 @@ noremap <Leader>v "+p
 
 "NERDTree
 map <Leader>t :NERDTreeToggle<CR>
+
+"GoRun
+map <Leader>g :GoRun<CR>
+map <Leader>gg :GoCoverageToggle<CR>
+" format with goimports instead of gofmt
+let g:go_fmt_command = "goimports"
+" enable fmt on save
+let g:go_fmt_autosave = 1
+" GoRun
+" au FileType go nmap gr :GoRun <cr>
 
 syntax on
 filetype indent plugin on
@@ -115,9 +125,6 @@ map <F2> :mksession! ~/vim_session <cr>
 
 "Reload session
 map <F3> :source ~/vim_session <cr>
-
-" GoRun
-au FileType go nmap gr :GoRun <cr>
 
 "Navigation between windows
 nnoremap <C-J> <C-W><C-J>

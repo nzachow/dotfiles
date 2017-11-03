@@ -31,6 +31,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'takac/vim-hardtime'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'maksimr/vim-jsbeautify'
 " Plugin 'vim-syntastic/syntastic'
 "Plugin 'artur-shaik/vim-javacomplete2'
 call vundle#end()            " required

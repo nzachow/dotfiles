@@ -56,7 +56,7 @@ font-2 = Termsynu:size=10:antialias=false;-2
 font-3 = FontAwesome:size=10;0
 
 modules-left = i3 weather
-modules-center = music
+modules-center = mpd
 modules-right = filesystem volume xkeyboard memory cpu wlan eth  temperature date powermenu
 
 tray-position = right
@@ -114,14 +114,14 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 exec = ~/.config/polybar/weather
 
-[module/music]
-type = custom/script
-interval = 2
-label =  %output:0:95:...%
-exec = ~/.config/polybar/mpris.sh
-click-left = playerctl previous
-click-middle = playerctl play-pause
-click-right = playerctl next
+; [module/music]
+; type = custom/script
+; interval = 2
+; label =  %output:0:95:...%
+; exec = ~/.config/polybar/mpris.sh
+; click-left = playerctl previous
+; click-middle = playerctl play-pause
+; click-right = playerctl next
 
 [module/bspwm]
 type = internal/bspwm
@@ -176,18 +176,34 @@ label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-; [module/mpd]
-; type = internal/mpd
-; format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+[module/mpd]
+type = internal/mpd
 
-; icon-prev = 
-; icon-stop = 
-; icon-play = 
-; icon-pause = 
-; icon-next = 
+host = 127.0.0.1
+port = 6600
+interval = 2
 
-; label-song-maxlen = 25
-; label-song-ellipsis = true
+label-song =   %title% by %artist%
+
+label-offline = mpd is offline
+format-offline =   <label-offline>
+
+icon-pause = ▶
+icon-play =▷
+icon-stop =□
+icon-prev =«
+icon-next =»
+
+label-song-maxlen = 80
+label-song-ellipsis = true
+
+bar-progress-width = 20
+bar-progress-indicator = >
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+format-online =  <icon-prev> <toggle> <icon-next> <label-song> |<bar-progress>|
+format-stopped = mpd is stopped
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -213,11 +229,11 @@ card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
-interval = 2
+interval = 5
 format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = %percentage%%
+label = %percentage:2:3%%
 
 [module/memory]
 type = internal/memory

@@ -4,50 +4,93 @@
 set relativenumber
 "Current line will display absolute number
 set number
-set nocompatible              " be iMproved, required
-filetype off                  " required
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#rc('~/.config/nvim/bundle')
-call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-Plugin 'dracula/vim'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'vim-airline/vim-airline'
-Plugin 'SirVer/ultisnips'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'nvim/'}
-Plugin 'zchee/deoplete-go'
-Plugin 'mxw/vim-jsx'
-Plugin 'pangloss/vim-javascript'
-Plugin 'blindFS/vim-taskwarrior'
-Plugin 'tpope/vim-fugitive'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'takac/vim-hardtime'
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'maksimr/vim-jsbeautify'
-" Plugin 'vim-syntastic/syntastic'
-"Plugin 'artur-shaik/vim-javacomplete2'
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#begin('~/.nvim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'w0rp/ale'
+Plug 'dracula/vim'
+Plug 'vim-airline/vim-airline', { 'on': [] }
+" Plug 'SirVer/ultisnips'
 
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
-"Hardmode settings
-let g:hardtime_maxcount = 3
-let g:hardtime_showmsg = 1
-let g:hardtime_timeout = 1300
-let g:hardtime_default_on = 1
-let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
+Plug 'Shougo/deoplete.nvim' ", { 'on': [] }
+Plug 'fatih/vim-go', { 'on': [] }
 
-" Autoformat file on save
-" let blacklist = ['md', 'go']
-" au BufWrite * if ! index(blacklist, &ft) < 0 | :Autoformat
+Plug 'zchee/deoplete-go', { 'on': [] }
+" Plug 'carlitux/deoplete-ternjs'
+" Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx','typescript'] }
+" Plug 'leafgarland/typescript-vim'
+" Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'mhartington/nvim-typescript'
+
+" Plug 'blindFS/vim-taskwarrior'
+
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'maksimr/vim-jsbeautify'
+
+Plug 'airblade/vim-gitgutter'
+" Plug 'gcmt/taboo.vim'
+Plug 'haya14busa/incsearch.vim'
+Plug 'simnalamburt/vim-mundo'
+call plug#end()
+
+set undofile
+set undodir=~/.nvim/undo
+
+nnoremap <F5> :MundoToggle<CR>
+
+" Preview changes for %s commands
+set inccommand=split
+
+" Cycle jumplist
+nnoremap <tab> <c-o>
+nnoremap <s-tab> <c-i>
+
+set noshowmode
+
+augroup load_go
+  autocmd!
+  autocmd InsertEnter * call plug#load('deoplete.nvim', 'vim-go', 'vim-airline', 'deoplete-go')
+                     \| autocmd! load_go
+augroup END
+
+" Incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
+
+let g:go_auto_type_info = 1
+let g:go_auto_sameids = 1
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+" set completeopt-=preview
+" javascript beautify
+autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
+" for json
+autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
+" for jsx
+autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+" for html
+autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
+" for css or scss
+autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 let g:airline_powerline_fonts = 1
 let g:deoplete#enable_at_startup = 1
@@ -55,8 +98,7 @@ let g:deoplete#enable_at_startup = 1
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 "Close preview window
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-"Javaaaaaaaaa
-" autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
 "Tab name
 let &titlestring = expand('%:p:h:t')
 set title
@@ -65,9 +107,14 @@ set title
 vnoremap <Leader>c "+y
 "Paste from system clipboard
 noremap <Leader>v "+p
+"Go to last buffer
+noremap <Leader>b :b#<CR>
 
-"NERDTree
-map <Leader>t :NERDTreeToggle<CR>
+noremap <Leader>j :cnext<CR>
+noremap <Leader>k :cw<CR>
+
+"FZF
+noremap <Space> :FZF<CR>
 
 "GoRun
 map <Leader>g :GoRun<CR>
@@ -76,8 +123,8 @@ map <Leader>gg :GoCoverageToggle<CR>
 let g:go_fmt_command = "goimports"
 " enable fmt on save
 let g:go_fmt_autosave = 1
-" GoRun
-" au FileType go nmap gr :GoRun <cr>
+noremap gr :GoRename<CR>
+noremap gf :GoReferrers<CR>
 
 syntax on
 filetype indent plugin on
@@ -100,9 +147,6 @@ set hidden
 "Y should work the same way as C and D ("from here to the end of line")
 map Y y$
 
-"Smooth scrolling
-set lazyredraw
-
 "real tab for real bioinformaticians
 inoremap <S-Tab> <C-V><Tab>
 
@@ -112,20 +156,12 @@ set sessionoptions+=tabpages,globals
 
 set cursorline
 hi CursorLine term=bold cterm=bold guibg=grey
-highlight Search ctermfg=grey
-""Do not exceed 100 characters per line
 highlight ExtraWhitespace ctermbg=grey guibg=grey
 call matchadd('ExtraWhitespace', '\s\+$', 11)
 
-" highlight OverLength ctermbg=lightred guibg=lightgrey
-" call matchadd('OverLength', '\%>100v.\+')
-" highlight Normal ctermbg=Blue
-
-"Save session
-map <F2> :mksession! ~/vim_session <cr>
-
-"Reload session
-map <F3> :source ~/vim_session <cr>
+" Highlight column 90
+highlight OverLength ctermbg=lightred guibg=lightgrey
+call matchadd('OverLength', '\%<91v.\%>90v')
 
 "Navigation between windows
 nnoremap <C-J> <C-W><C-J>
@@ -144,9 +180,6 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 tnoremap <C-g>t <C-\><C-n>gt
 tnoremap <C-g>T <C-\><C-n>gT
 
-map <F9> :set paste<CR>
-map <F10> :set nopaste<CR>
-
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
@@ -159,9 +192,6 @@ set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
-
-" Always show the status line
-set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l

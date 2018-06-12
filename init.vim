@@ -9,7 +9,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'dracula/vim'
-Plug 'vim-airline/vim-airline', { 'on': [] }
+Plug 'vim-airline/vim-airline'
 " Plug 'SirVer/ultisnips'
 
 Plug 'tpope/vim-commentary'

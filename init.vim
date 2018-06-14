@@ -15,6 +15,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'elmcast/elm-vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 Plug 'Shougo/deoplete.nvim' ", { 'on': [] }
 Plug 'fatih/vim-go', { 'on': [] }
@@ -40,6 +42,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'haya14busa/incsearch.vim'
 Plug 'simnalamburt/vim-mundo'
 call plug#end()
+
+"rainbow_parentheses
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType elm RainbowParentheses
+augroup END
 
 set undofile
 set undodir=~/.nvim/undo

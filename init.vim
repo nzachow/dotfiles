@@ -80,6 +80,11 @@ let g:go_auto_sameids = 1
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \}
+
+let g:ale_c_parse_makefile = 1
+let g:ale_c_gcc_options = '-g -Wpadded -Wall -Wextra -pedantic -std=gnu11'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 " set completeopt-=preview
 " javascript beautify
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>

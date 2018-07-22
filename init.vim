@@ -10,33 +10,19 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'dracula/vim'
 Plug 'vim-airline/vim-airline'
-" Plug 'SirVer/ultisnips'
-
+Plug 'rhysd/vim-clang-format'
+Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-
 Plug 'Shougo/deoplete.nvim' ", { 'on': [] }
 Plug 'fatih/vim-go', { 'on': [] }
-
 Plug 'zchee/deoplete-go', { 'on': [] }
-" Plug 'carlitux/deoplete-ternjs'
-" Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-" Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx','typescript'] }
-" Plug 'leafgarland/typescript-vim'
-" Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'mhartington/nvim-typescript'
-
-" Plug 'blindFS/vim-taskwarrior'
-
-" Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'blindFS/vim-taskwarrior'
 Plug 'maksimr/vim-jsbeautify'
-
 Plug 'airblade/vim-gitgutter'
-" Plug 'gcmt/taboo.vim'
 Plug 'haya14busa/incsearch.vim'
 Plug 'simnalamburt/vim-mundo'
 call plug#end()
